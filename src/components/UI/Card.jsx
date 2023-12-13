@@ -1,10 +1,7 @@
-import React from 'react'
-
-const Card = () => {
+import "./Card.css"
+const Card = (props) => {
   return (
-    <div>
-      
-    </div>
+    <li className="card">{props.children}</li>
   )
 }
 
