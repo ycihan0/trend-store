@@ -1,11 +1,28 @@
-import React from 'react'
+import { Fragment } from "react";
+import  ReactDOM  from "react-dom";
+import "./Offcanvas.css";
 
-const Offcanvas = () => {
+const Backdrop = (props) => {
+  return <div className="backdrop" onClick={props.hideCartHandler} />;
+};
+const OffcanvasOverlay = (props) => {
   return (
-    <div>
-      
+    <div className="offcanvas">
+      <div className="content">{props.children}</div>
     </div>
-  )
-}
+  );
+};
+const Offcanvas = (props) => {
+  const portalElement = document.getElementById("overlays");
+  return (
+    <Fragment>
+      {ReactDOM.createPortal(
+      <Backdrop hideCartHandler={props.hideCartHandler}/>, 
+      portalElement)}
+      {ReactDOM.createPortal(
+      <OffcanvasOverlay>{props.children}</OffcanvasOverlay>, 
+      portalElement)}
+    </Fragment>)
+};
 
-export default Offcanvas
+export default Offcanvas;
