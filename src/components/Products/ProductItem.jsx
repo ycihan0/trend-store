@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import Card from "../UI/Card";
 import "./ProductItem.css";
 import Rating from "./Rating";
+import { CartContext } from "../../context/CartProvider";
 const ProductItem = ({ product }) => {
   const { name, description, img, price } = product;
+  const{addItem}=useContext(CartContext);
   return (
     <Card>
       <img src={img} alt={name} />
@@ -12,7 +15,7 @@ const ProductItem = ({ product }) => {
         <Rating />
         <span className="price">{price} ₺</span>
       </div>
-      <button className="add-to-cart">Add to cart</button>
+      <button className="add-to-cart" onClick={()=>addItem(product)}>Add to cart</button>
     </Card>
   );
 };
